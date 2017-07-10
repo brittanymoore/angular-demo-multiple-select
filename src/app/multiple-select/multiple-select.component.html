@@ -1,0 +1,8 @@
+<div *ngIf="selections && options">
+    <label *ngFor="let option of options; let i = index;">
+        {{i+1}}.
+        <select [(ngModel)]="selections[i].value" name="selection{{i}}" (change)="onChange($event)">
+            <option *ngFor="let opt of options" [value]="opt">{{opt}}</option>
+        </select>
+    </label>
+</div>

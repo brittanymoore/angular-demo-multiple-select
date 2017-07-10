@@ -1,0 +1,31 @@
+<h1>Custom Form Control Demo</h1>
+
+<section>
+
+    <h2>Template Form</h2>
+
+    <form #form="ngForm">
+        <multiple-select #selectionsControl="ngModel" [(ngModel)]="selections" name="selections"></multiple-select>
+        <small class="error" *ngIf="selectionsControl.errors?.missing">Missing values.</small>
+        <small class="error" *ngIf="selectionsControl.errors?.duplicates">Duplicate values selected.</small>
+    </form>
+
+    <p>Value:</p>
+    <pre>{{ form.value | json }}</pre>
+
+</section>
+
+<section>
+
+    <h2>Reactive Form</h2>
+
+    <form [formGroup]="reactiveForm">
+        <multiple-select formControlName="selections"></multiple-select>
+        <small class="error" *ngIf="reactiveForm.get('selections').hasError('missing')">Missing values.</small>
+        <small class="error" *ngIf="reactiveForm.get('selections').hasError('duplicates')">Duplicate values selected.</small>
+    </form>
+
+    <p>Value:</p>
+    <pre>{{ reactiveForm.value | json }}</pre>
+
+</section>
